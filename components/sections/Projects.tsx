@@ -1,7 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Github, ExternalLink, Folder } from "lucide-react";
@@ -9,33 +16,25 @@ import Link from "next/link";
 
 const projects = [
     {
-        title: "E-Commerce Platform",
-        description: "A full-featured online shopping platform with user authentication, product catalog, shopping cart, and payment gateway integration. Built for scalability and performance.",
-        tags: ["Next.js", "TypeScript", "Stripe", "Prisma", "PostgreSQL"],
+        title: "Visitor Management System",
+        description:
+            "A secure web-based Visitor Management System that allows admin and security staff to manage visitor entries, approvals, and pass generation. Includes role-based authentication, dashboard analytics, and real-time status updates.",
+        tags: ["React.js", "Node.js", "Express.js", "MongoDB", "JWT", "AWS Amplify"],
         links: {
-            demo: "https://example.com",
-            github: "https://github.com",
-        },
-        // Placeholder image logic to be handled by CSS or generic icon
-    },
-    {
-        title: "Task Management App",
-        description: "A collaborative task management tool similar to Trello, featuring drag-and-drop boards, real-time updates using WebSockets, and team workspaces.",
-        tags: ["React", "Node.js", "Socket.io", "MongoDB", "Redux"],
-        links: {
-            demo: "https://example.com",
-            github: "https://github.com",
+            demo: "https://your-amplify-domain.amplifyapp.com",
+            github: "https://github.com/samerr03/Visitor-Pass-Management-System-.git",
         },
     },
     {
-        title: "AI Chat Interface",
-        description: "A modern chat application integrated with OpenAI API, supporting real-time conversation streaming, markdown rendering, and chat history persistence.",
-        tags: ["Next.js", "OpenAI API", "Tailwind CSS", "Firebase"],
+        title: "Cross-Browser Automation Testing – YouTube",
+        description:
+            "Developed an automated cross-browser testing framework using Java and TestNG to validate YouTube's core functionalities across Chrome, Firefox, and Edge. Implemented structured Maven configuration, test suites, and automated report generation to ensure compatibility and consistent user experience.",
+        tags: ["Java", "Selenium WebDriver", "TestNG", "Maven", "Automation Testing"],
         links: {
-            demo: "https://example.com",
-            github: "https://github.com",
+            demo: "#",
+            github: "https://github.com/samerr03/Cross-Browser-Testing-On-Youtube.git",
         },
-    }
+    },
 ];
 
 export function Projects() {
@@ -59,7 +58,7 @@ export function Projects() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {projects.map((project, index) => (
                         <motion.div
-                            key={index}
+                            key={project.title}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
@@ -70,12 +69,14 @@ export function Projects() {
                                     <Folder className="w-16 h-16 text-primary/40 group-hover:scale-110 transition-transform duration-300" />
                                     <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                                 </div>
+
                                 <CardHeader>
                                     <CardTitle className="text-xl">{project.title}</CardTitle>
                                     <CardDescription className="line-clamp-3 mt-2">
                                         {project.description}
                                     </CardDescription>
                                 </CardHeader>
+
                                 <CardContent className="flex-grow">
                                     <div className="flex flex-wrap gap-2">
                                         {project.tags.map((tag) => (
@@ -85,14 +86,15 @@ export function Projects() {
                                         ))}
                                     </div>
                                 </CardContent>
+
                                 <CardFooter className="flex gap-4 pt-4 border-t border-border/50">
                                     <Button variant="outline" size="sm" className="w-full gap-2" asChild>
-                                        <Link href={project.links.github} target="_blank">
+                                        <Link href={project.links.github} target="_blank" rel="noreferrer">
                                             <Github className="w-4 h-4" /> Code
                                         </Link>
                                     </Button>
                                     <Button size="sm" className="w-full gap-2" asChild>
-                                        <Link href={project.links.demo} target="_blank">
+                                        <Link href={project.links.demo} target="_blank" rel="noreferrer">
                                             <ExternalLink className="w-4 h-4" /> Live Demo
                                         </Link>
                                     </Button>
@@ -104,7 +106,7 @@ export function Projects() {
 
                 <div className="text-center mt-12">
                     <Button variant="ghost" size="lg" className="text-primary gap-2" asChild>
-                        <Link href="https://github.com" target="_blank">
+                        <Link href="https://github.com/samerr03" target="_blank" rel="noreferrer">
                             View More on GitHub <Github className="w-5 h-5" />
                         </Link>
                     </Button>
