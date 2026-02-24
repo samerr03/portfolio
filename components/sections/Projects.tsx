@@ -21,7 +21,7 @@ const projects = [
             "A secure web-based Visitor Management System that allows admin and security staff to manage visitor entries, approvals, and pass generation. Includes role-based authentication, dashboard analytics, and real-time status updates.",
         tags: ["React.js", "Node.js", "Express.js", "MongoDB", "JWT", "AWS Amplify"],
         links: {
-            demo: "https://your-amplify-domain.amplifyapp.com",
+            demo: "https://d3rhxd4jwoeunz.cloudfront.net/",
             github: "https://github.com/samerr03/Visitor-Pass-Management-System-.git",
         },
     },
