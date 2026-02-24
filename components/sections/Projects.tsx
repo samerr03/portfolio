@@ -13,10 +13,12 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Github, ExternalLink, Folder } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 const projects = [
     {
         title: "Visitor Management System",
+        image: "/projects/vms.png",
         description:
             "A secure web-based Visitor Management System that allows admin and security staff to manage visitor entries, approvals, and pass generation. Includes role-based authentication, dashboard analytics, and real-time status updates.",
         tags: ["React.js", "Node.js", "Express.js", "MongoDB", "JWT", "AWS Amplify"],
@@ -27,6 +29,7 @@ const projects = [
     },
     {
         title: "Cross-Browser Automation Testing – YouTube",
+        image: "/projects/youtube.png",
         description:
             "Developed an automated cross-browser testing framework using Java and TestNG to validate YouTube's core functionalities across Chrome, Firefox, and Edge. Implemented structured Maven configuration, test suites, and automated report generation to ensure compatibility and consistent user experience.",
         tags: ["Java", "Selenium WebDriver", "TestNG", "Maven", "Automation Testing"],
@@ -65,9 +68,20 @@ export function Projects() {
                             transition={{ duration: 0.5, delay: index * 0.1 }}
                         >
                             <Card className="h-full flex flex-col hover:shadow-xl transition-shadow duration-300 border-primary/10 overflow-hidden group">
-                                <div className="h-48 bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center relative overflow-hidden">
-                                    <Folder className="w-16 h-16 text-primary/40 group-hover:scale-110 transition-transform duration-300" />
-                                    <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                <div className="relative w-full h-48 bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center rounded-t-xl overflow-hidden">
+                                    {project.image ? (
+                                        <Image
+                                            src={project.image}
+                                            alt={project.title}
+                                            fill
+                                            className="object-cover"
+                                        />
+                                    ) : (
+                                        <>
+                                            <Folder className="w-16 h-16 text-primary/40 group-hover:scale-110 transition-transform duration-300" />
+                                            <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                        </>
+                                    )}
                                 </div>
 
                                 <CardHeader>
