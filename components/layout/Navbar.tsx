@@ -20,10 +20,28 @@ const navLinks = [
 export function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const [activeSection, setActiveSection] = useState("");
 
     useEffect(() => {
         const handleScroll = () => {
             setScrolled(window.scrollY > 20);
+
+            // Scroll spy logic
+            const sections = navLinks.map(link => link.href.substring(1));
+            const currentPosition = window.scrollY + 100;
+
+            for (const section of sections) {
+                const element = document.getElementById(section);
+                if (element) {
+                    const offsetTop = element.offsetTop;
+                    const offsetHeight = element.offsetHeight;
+
+                    if (currentPosition >= offsetTop && currentPosition < offsetTop + offsetHeight) {
+                        setActiveSection(section);
+                        break;
+                    }
+                }
+            }
         };
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
@@ -32,10 +50,10 @@ export function Navbar() {
     return (
         <nav
             className={cn(
-                "fixed top-0 w-full z-50 transition-all duration-300 border-b border-transparent",
+                "fixed top-0 w-full z-50 transition-all duration-500 border-b border-transparent",
                 scrolled
-                    ? "bg-background/80 backdrop-blur-md border-border/40 shadow-sm"
-                    : "bg-transparent"
+                    ? "bg-background/70 backdrop-blur-xl border-border/50 shadow-[0_4px_30px_rgba(0,0,0,0.03)] dark:shadow-[0_4px_30px_rgba(0,0,0,0.1)] py-2"
+                    : "bg-transparent py-4"
             )}
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -47,15 +65,28 @@ export function Navbar() {
 
                     <div className="hidden md:block">
                         <div className="ml-10 flex items-baseline space-x-4">
-                            {navLinks.map((link) => (
-                                <Link
-                                    key={link.name}
-                                    href={link.href}
-                                    className="text-muted-foreground hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors"
-                                >
-                                    {link.name}
-                                </Link>
-                            ))}
+                            {navLinks.map((link) => {
+                                const isActive = activeSection === link.href.substring(1);
+                                return (
+                                    <Link
+                                        key={link.name}
+                                        href={link.href}
+                                        className={cn(
+                                            "relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ease-in-out hover:text-primary",
+                                            isActive ? "text-primary" : "text-muted-foreground"
+                                        )}
+                                    >
+                                        {link.name}
+                                        {isActive && (
+                                            <motion.div
+                                                layoutId="navbar-active"
+                                                className="absolute inset-0 bg-primary/10 rounded-full -z-10"
+                                                transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                                            />
+                                        )}
+                                    </Link>
+                                );
+                            })}
                             <ThemeToggle />
                             <Button size="sm" asChild>
                                 <Link href="#contact">Hire Me</Link>

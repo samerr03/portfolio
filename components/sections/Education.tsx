@@ -29,7 +29,7 @@ const educationData = [
         period: "2021 - 2022",
         location: "Kherod Dhar, Madhya Pradesh",
         description: "Specialized in Science and Mathematics. Developed strong logical foundation and problem-solving skills.",
-        result: "Percentage: 83%",
+        result: "Percentage: 83",
     },
     {
         title: "Secondary Education (10th)",
@@ -37,7 +37,7 @@ const educationData = [
         period: "2019 - 2020",
         location: "Kherod Dhar, Madhya Pradesh",
         description: "Foundational education with a focus on core subjects and early interest in technology.",
-        result: "Percentage: 90.33%",
+        result: "Percentage: 90.33",
     },
 ];
 
@@ -56,11 +56,11 @@ export function Education() {
         setParticles(newParticles);
     }, []);
     return (
-        <section id="education" className="py-20 md:py-24 relative overflow-hidden bg-background">
+        <section id="education" className="py-24 md:py-32 relative overflow-hidden bg-transparent">
             {/* Background Decorative Elements */}
-            <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-1/4 left-1/4 w-80 h-80 bg-primary/5 rounded-full blur-3xl animate-pulse" />
-                <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-primary/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
+            <div className="absolute inset-0 pointer-events-none z-0">
+                <div className="absolute top-1/4 left-1/4 w-[40rem] h-[40rem] bg-primary/20 rounded-full blur-[120px] mix-blend-multiply dark:mix-blend-screen opacity-50 animate-pulse" />
+                <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[120px] mix-blend-multiply dark:mix-blend-screen opacity-50 animate-pulse" style={{ animationDelay: '2s' }} />
 
                 {/* Floating Particles */}
                 {particles.map((particle) => (
@@ -92,10 +92,10 @@ export function Education() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    className="text-center mb-20"
+                    className="text-center mb-24"
                 >
-                    <h2 className="text-3xl md:text-5xl font-extrabold mb-4 tracking-tight">
-                        My <span className="text-primary italic relative inline-block">
+                    <h2 className="text-3xl md:text-5xl font-extrabold mb-6 tracking-tight">
+                        My <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-indigo-500 italic relative inline-block">
                             Education
                             <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 100 10" preserveAspectRatio="none">
                                 <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="3" fill="none" className="text-primary/40" />
@@ -142,21 +142,21 @@ export function Education() {
                                     className="relative group p-[1px] rounded-2xl overflow-hidden mt-8 transition-all duration-300"
                                 >
                                     {/* Animated Border Gradient */}
-                                    <div className="absolute inset-0 bg-gradient-to-br from-primary/60 via-secondary/40 to-primary/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                                    <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-secondary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                                    <Card className="relative border-none bg-secondary/30 backdrop-blur-xl hover:bg-secondary/50 transition-all duration-500 shadow-xl group-hover:shadow-primary/10">
-                                        <CardContent className="p-7">
-                                            <div className="flex justify-between items-start mb-4">
-                                                <h3 className="text-xl font-bold group-hover:text-primary transition-colors leading-tight tracking-tight">
+                                    <Card className="relative border border-white/10 bg-background/50 backdrop-blur-xl hover:bg-background/80 transition-all duration-500 shadow-[0_8px_30px_rgb(0,0,0,0.04)] group-hover:shadow-[0_8px_30px_rgba(37,99,235,0.15)] group-hover:-translate-y-2">
+                                        <CardContent className="p-8">
+                                            <div className="flex justify-between items-start mb-5">
+                                                <h3 className="text-xl font-extrabold group-hover:text-primary transition-colors leading-tight tracking-tight">
                                                     {item.title}
                                                 </h3>
                                                 <div className="flex flex-col items-end">
-                                                    <span className="text-xs font-black text-primary/90 bg-primary/10 px-2 py-1 rounded-lg border border-primary/10 italic shadow-sm">{item.result}</span>
+                                                    <span className="text-xs font-black text-primary/90 bg-primary/10 px-3 py-1.5 rounded-lg border border-primary/20 shadow-sm whitespace-nowrap">{item.result}</span>
                                                 </div>
                                             </div>
 
                                             <div className="mb-5">
-                                                <p className="text-sm font-bold text-foreground/90 mb-1.5 tracking-wide">{item.organization}</p>
+                                                <p className="text-sm font-bold text-foreground/90 mb-2 tracking-wide text-lg">{item.organization}</p>
                                                 <div className="flex items-center gap-1.5 text-xs text-muted-foreground font-semibold uppercase tracking-wider">
                                                     <MapPin className="w-3 h-3 text-primary/50" />
                                                     {item.location}
@@ -197,15 +197,15 @@ export function Education() {
                                     <motion.div whileHover={{ scale: 1.02 }} className="transition-transform duration-300">
                                         <Card className="relative border-none bg-secondary/40 backdrop-blur-md shadow-lg rounded-2xl">
                                             <CardContent className="p-6">
-                                                <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-                                                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold bg-primary/10 text-primary border border-primary/10">
+                                                <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+                                                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-primary/10 text-primary border border-primary/20 shadow-sm">
                                                         <Calendar className="w-3.5 h-3.5" />
                                                         {item.period}
                                                     </span>
-                                                    <span className="text-[11px] font-black text-primary/80 italic font-bold">{item.result}</span>
+                                                    <span className="text-xs font-black text-primary/90 bg-primary/10 px-3 py-1.5 rounded-lg border border-primary/20">{item.result}</span>
                                                 </div>
-                                                <h3 className="text-lg font-bold mb-1.5">{item.title}</h3>
-                                                <p className="text-sm font-bold text-foreground/80 mb-3">{item.organization}</p>
+                                                <h3 className="text-xl font-extrabold mb-2">{item.title}</h3>
+                                                <p className="text-sm font-bold text-foreground/80 mb-3 text-lg">{item.organization}</p>
                                                 <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
                                             </CardContent>
                                         </Card>

@@ -76,6 +76,22 @@
   body {
     background-color: var(--background);
     color: var(--foreground);
+    @apply bg-gradient-to-br from-white via-blue-50/50 to-indigo-50/50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 min-h-screen bg-fixed;
     font-feature-settings: 'rlig' 1, 'calt' 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply tracking-tight;
+  }
+
+  p {
+    @apply text-muted-foreground leading-relaxed;
   }
 }

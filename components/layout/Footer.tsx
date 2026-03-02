@@ -14,15 +14,15 @@ export function Footer() {
                     </div>
 
                     <div className="flex gap-6">
-                        <Link href="https://github.com" target="_blank" className="text-muted-foreground hover:text-primary transition-colors">
+                        <Link href="https://github.com/samerr03" target="_blank" className="text-muted-foreground hover:text-primary transition-colors">
                             <Github className="w-5 h-5" />
                             <span className="sr-only">GitHub</span>
                         </Link>
-                        <Link href="https://linkedin.com" target="_blank" className="text-muted-foreground hover:text-primary transition-colors">
+                        <Link href="www.linkedin.com/in/sameer-patel-b1ab4b349" target="_blank" className="text-muted-foreground hover:text-primary transition-colors">
                             <Linkedin className="w-5 h-5" />
                             <span className="sr-only">LinkedIn</span>
                         </Link>
-                        <Link href="https://instagram.com" target="_blank" className="text-muted-foreground hover:text-primary transition-colors">
+                        <Link href="https://www.instagram.com/_samerr_03?igsh=M210MmdobGtqbnph" target="_blank" className="text-muted-foreground hover:text-primary transition-colors">
                             <Instagram className="w-5 h-5" />
                             <span className="sr-only">Instagram</span>
                         </Link>
