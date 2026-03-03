@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Background } from "@/components/ui/Background";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -43,13 +44,14 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" className="scroll-smooth" suppressHydrationWarning>
-            <body className={`${inter.variable} font-sans antialiased bg-background text-foreground min-h-screen selection:bg-primary/20`}>
+            <body className={`${inter.variable} font-sans antialiased text-foreground min-h-screen selection:bg-primary/20 bg-transparent`}>
                 <ThemeProvider
                     attribute="class"
                     defaultTheme="system"
                     enableSystem
                     disableTransitionOnChange
                 >
+                    <Background />
                     <Navbar />
                     {children}
                     <Footer />

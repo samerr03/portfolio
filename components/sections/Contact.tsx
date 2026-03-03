@@ -114,9 +114,9 @@ export function Contact() {
                                 <p className="text-sm font-semibold text-muted-foreground mb-4 uppercase tracking-wider">Social Connect</p>
                                 <div className="flex gap-4">
                                     {[
-                                        { icon: Github, href: "https://github.com", label: "GitHub" },
-                                        { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-                                        { icon: Instagram, href: "https://instagram.com", label: "Instagram" },
+                                        { icon: Github, href: "https://github.com/samerr03", label: "GitHub" },
+                                        { icon: Linkedin, href: "https://www.linkedin.com/in/sameer-patel-b1ab4b349", label: "LinkedIn" },
+                                        { icon: Instagram, href: "https://www.instagram.com/_samerr_03?igsh=M210MmdobGtqbnph", label: "Instagram" },
                                     ].map((social, idx) => (
                                         <a
                                             key={idx}
