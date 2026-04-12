@@ -35,7 +35,7 @@ export function About() {
                                     <div className="absolute inset-0 flex items-center justify-center text-primary-foreground/50">
                                         <User className="w-32 h-32" />
                                     </div>
-                                    <Image src="/smp.png" alt="Profile" fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
+                                    <Image src="/smp.png" alt="Profile" fill sizes="(max-width: 768px) 100vw, 50vw" priority className="object-cover transition-transform duration-700 group-hover:scale-110" />
                                 </div>
                                 {/* Decorative background element */}
                                 <div className="absolute -bottom-6 -right-6 w-full h-full border-2 border-primary/20 rounded-3xl -z-10 transition-transform duration-500 group-hover:translate-x-2 group-hover:translate-y-2" />

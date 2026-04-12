@@ -163,6 +163,7 @@ export function Contact() {
                                         animate={{ opacity: 1 }}
                                         exit={{ opacity: 0 }}
                                         onSubmit={handleSubmit}
+                                        suppressHydrationWarning
                                         className="space-y-6"
                                     >
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

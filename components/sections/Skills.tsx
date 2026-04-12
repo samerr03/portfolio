@@ -11,7 +11,6 @@ const skillsData = [
         icon: Laptop,
         skills: [
             { name: "Java", slug: "java" },
-            { name: "Python", slug: "python" },
             { name: "JavaScript", slug: "javascript" },
             { name: "C++", slug: "cplusplus" },
             { name: "C", slug: "c" },
@@ -36,6 +35,7 @@ const skillsData = [
             { name: "Node.js", slug: "nodedotjs" },
             { name: "Express", slug: "express" },
             { name: "REST APIs", slug: "json" },
+            { name: "MongoDB", slug: "mongodb" },
         ],
     },
     {
@@ -48,6 +48,7 @@ const skillsData = [
             { name: "Maven", slug: "maven" },
             { name: "TestNG", slug: "testng" },
             { name: "Selenium WebDriver", slug: "selenium" },
+            { name: "Postman", slug: "postman" },
 
         ],
     },
