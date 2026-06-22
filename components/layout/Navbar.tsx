@@ -11,9 +11,10 @@ import { motion, AnimatePresence } from "framer-motion";
 const navLinks = [
     { name: "About", href: "#about" },
     { name: "Skills", href: "#skills" },
-    { name: "Education", href: "#education" },
-    { name: "Certificates", href: "#certificates" },
     { name: "Projects", href: "#projects" },
+    { name: "Certificates", href: "#certificates" },
+    { name: "Achievements", href: "#achievements" },
+    { name: "Education", href: "#education" },
     { name: "Contact", href: "#contact" },
 ];
 
@@ -28,7 +29,7 @@ export function Navbar() {
 
             // Scroll spy logic
             const sections = navLinks.map(link => link.href.substring(1));
-            const currentPosition = window.scrollY + 100;
+            const currentPosition = window.scrollY + 120;
 
             for (const section of sections) {
                 const element = document.getElementById(section);
@@ -48,93 +49,119 @@ export function Navbar() {
     }, []);
 
     return (
-        <nav
-            className={cn(
-                "fixed top-0 w-full z-50 transition-all duration-500 border-b border-transparent",
-                scrolled
-                    ? "bg-background/70 backdrop-blur-xl border-border/50 shadow-[0_4px_30px_rgba(0,0,0,0.03)] dark:shadow-[0_4px_30px_rgba(0,0,0,0.1)] py-2"
-                    : "bg-transparent py-4"
-            )}
-        >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex items-center justify-between h-16">
-                    <div className="flex-shrink-0 flex items-center gap-2">
-                        <Code2 className="h-8 w-8 text-primary" />
-                        <span className="font-bold text-xl tracking-tight">Portfolio</span>
+        <div className="fixed top-0 left-0 w-full z-50 flex justify-center pointer-events-none">
+            <nav
+                className={cn(
+                    "transition-all duration-500 border pointer-events-auto flex items-center justify-between shadow-sm",
+                    scrolled
+                        ? "mt-3 w-[90%] max-w-5xl rounded-full bg-white/75 dark:bg-slate-950/75 border-slate-200/50 dark:border-slate-800/50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgba(59,130,246,0.03)] py-1.5 px-6 backdrop-blur-md"
+                        : "mt-6 w-[95%] max-w-6xl rounded-full bg-white/40 dark:bg-slate-950/40 border-slate-200/30 dark:border-slate-800/30 py-3.5 px-8 backdrop-blur-sm"
+                )}
+            >
+                {/* Logo Section */}
+                <Link
+                    href="#"
+                    className="flex-shrink-0 flex items-center gap-2 group cursor-pointer"
+                >
+                    <div className="p-2 rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400 group-hover:bg-blue-500/20 transition-all duration-300">
+                        <Code2 className="h-5 w-5" />
+                    </div>
+                    <span className="font-bold text-base tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 dark:from-slate-50 dark:via-slate-100 dark:to-slate-50">
+                        Sameer Patel
+                    </span>
+                </Link>
+
+                {/* Desktop Navigation */}
+                <div className="hidden md:flex items-center gap-6">
+                    <div className="flex items-center space-x-1 bg-slate-100/40 dark:bg-slate-900/40 p-1 rounded-full border border-slate-200/40 dark:border-slate-800/40 backdrop-blur-md">
+                        {navLinks.map((link) => {
+                            const isActive = activeSection === link.href.substring(1);
+                            return (
+                                <Link
+                                    key={link.name}
+                                    href={link.href}
+                                    className={cn(
+                                        "relative px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider transition-all duration-300 ease-in-out",
+                                        isActive
+                                            ? "text-blue-600 dark:text-blue-400"
+                                            : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100"
+                                    )}
+                                >
+                                    {link.name}
+                                    {isActive && (
+                                        <motion.div
+                                            layoutId="navbar-active"
+                                            className="absolute inset-0 bg-white dark:bg-slate-950 rounded-full -z-10 shadow-[0_2px_8px_rgba(0,0,0,0.04)] dark:shadow-[0_2px_8px_rgba(255,255,255,0.02)] border border-slate-200/50 dark:border-slate-800/50"
+                                            transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                                        />
+                                    )}
+                                </Link>
+                            );
+                        })}
                     </div>
 
-                    <div className="hidden md:block">
-                        <div className="ml-10 flex items-baseline space-x-4">
+                    <div className="flex items-center gap-3">
+                        <ThemeToggle />
+                        <Button size="sm" className="rounded-full font-semibold bg-blue-600 hover:bg-blue-700 text-white dark:bg-blue-500 dark:hover:bg-blue-600 shadow-md hover:shadow-blue-500/20 hover:-translate-y-0.5 transition-all duration-300" asChild>
+                            <Link href="#contact">Hire Me</Link>
+                        </Button>
+                    </div>
+                </div>
+
+                {/* Mobile Navigation Toggle */}
+                <div className="md:hidden flex items-center gap-2">
+                    <ThemeToggle />
+                    <button
+                        onClick={() => setIsOpen(!isOpen)}
+                        suppressHydrationWarning
+                        className="inline-flex items-center justify-center p-2 rounded-xl text-slate-500 hover:text-slate-950 dark:hover:text-slate-50 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors focus:outline-none"
+                        aria-label="Toggle Menu"
+                    >
+                        {isOpen ? <X className="block h-5 w-5" /> : <Menu className="block h-5 w-5" />}
+                    </button>
+                </div>
+            </nav>
+
+            {/* Mobile Navigation Drawer */}
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.2 }}
+                        className="absolute top-16 left-4 right-4 z-40 md:hidden bg-white/95 dark:bg-slate-950/95 backdrop-blur-lg border border-slate-200/50 dark:border-slate-800/50 rounded-2xl shadow-xl p-4 pointer-events-auto"
+                    >
+                        <div className="space-y-1">
                             {navLinks.map((link) => {
                                 const isActive = activeSection === link.href.substring(1);
                                 return (
                                     <Link
                                         key={link.name}
                                         href={link.href}
+                                        onClick={() => setIsOpen(false)}
                                         className={cn(
-                                            "relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ease-in-out hover:text-primary",
-                                            isActive ? "text-primary" : "text-muted-foreground"
+                                            "block px-4 py-2 rounded-xl text-sm font-semibold transition-colors",
+                                            isActive
+                                                ? "bg-blue-50/50 dark:bg-blue-950/20 text-blue-600 dark:text-blue-400"
+                                                : "text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900/50"
                                         )}
                                     >
                                         {link.name}
-                                        {isActive && (
-                                            <motion.div
-                                                layoutId="navbar-active"
-                                                className="absolute inset-0 bg-primary/10 rounded-full -z-10"
-                                                transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                                            />
-                                        )}
                                     </Link>
                                 );
                             })}
-                            <ThemeToggle />
-                            <Button size="sm" asChild>
-                                <Link href="#contact">Hire Me</Link>
-                            </Button>
-                        </div>
-                    </div>
-
-                    <div className="md:hidden flex items-center gap-4">
-                        <ThemeToggle />
-                        <button
-                            onClick={() => setIsOpen(!isOpen)}
-                            className="inline-flex items-center justify-center p-2 rounded-md text-muted-foreground hover:text-primary focus:outline-none"
-                        >
-                            <span className="sr-only">Open main menu</span>
-                            {isOpen ? <X className="block h-6 w-6" /> : <Menu className="block h-6 w-6" />}
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <AnimatePresence>
-                {isOpen && (
-                    <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="md:hidden bg-background border-b border-border/40"
-                    >
-                        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                            {navLinks.map((link) => (
-                                <Link
-                                    key={link.name}
-                                    href={link.href}
-                                    onClick={() => setIsOpen(false)}
-                                    className="block px-3 py-2 rounded-md text-base font-medium text-foreground hover:text-primary hover:bg-accent/50"
-                                >
-                                    {link.name}
-                                </Link>
-                            ))}
-                            <div className="px-3 py-2">
-                                <Button className="w-full" asChild>
-                                    <Link href="#contact" onClick={() => setIsOpen(false)}>Hire Me</Link>
+                            <div className="pt-3 mt-2 border-t border-slate-200/50 dark:border-slate-800/50">
+                                <Button className="w-full rounded-xl bg-blue-600 hover:bg-blue-700 text-white dark:bg-blue-500 dark:hover:bg-blue-600 font-semibold" asChild>
+                                    <Link href="#contact" onClick={() => setIsOpen(false)}>
+                                        Hire Me
+                                    </Link>
                                 </Button>
                             </div>
                         </div>
                     </motion.div>
                 )}
             </AnimatePresence>
-        </nav>
+        </div>
     );
 }

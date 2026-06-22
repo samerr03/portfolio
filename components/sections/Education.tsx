@@ -1,18 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { GraduationCap, Calendar, MapPin } from "lucide-react";
+import { Calendar, MapPin, BookOpen, Check } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-
-interface Particle {
-    id: number;
-    x: number;
-    duration: number;
-    delay: number;
-    left: number;
-    top: number;
-}
 
 const educationData = [
     {
@@ -20,200 +10,131 @@ const educationData = [
         organization: "Chandigarh University",
         period: "2023 - 2027",
         location: "Mohali, Punjab",
-        description: "Bachelor of Engineering in Computer Science. Currently maintaining a strong academic record with focused studies in software development and algorithms.",
-        result: "CGPA: 7.49/10",
+        description: "Bachelor of Engineering in Computer Science with focused study in software development, frontend systems, and algorithms.",
+        result: "CGPA: 7.51/10",
+        coursework: ["DSA", "OOP", "DBMS", "Operating System", "Computer Networks", "Software Engineering"]
     },
     {
         title: "Higher Secondary Education (12th)",
-        organization: "Shree Ln Academy",
+        organization: "Shree LN Academy",
         period: "2021 - 2022",
         location: "Kherod Dhar, Madhya Pradesh",
-        description: "Specialized in Science and Mathematics. Developed strong logical foundation and problem-solving skills.",
-        result: "Percentage: 83",
+        description: "Built a strong foundation in science and mathematics with a growing interest in problem solving and computing.",
+        result: "Percentage: 83%",
     },
     {
         title: "Secondary Education (10th)",
-        organization: "Shree Ln Academy",
+        organization: "Shree LN Academy",
         period: "2019 - 2020",
         location: "Kherod Dhar, Madhya Pradesh",
-        description: "Foundational education with a focus on core subjects and early interest in technology.",
-        result: "Percentage: 90.33",
+        description: "Developed core academic fundamentals and an early curiosity for technology and software.",
+        result: "Percentage: 90.33%",
     },
 ];
 
 export function Education() {
-    const [particles, setParticles] = useState<Particle[]>([]);
-
-    useEffect(() => {
-        const newParticles = [...Array(8)].map((_, i) => ({
-            id: i,
-            x: Math.random() * 60 - 30,
-            duration: 8 + Math.random() * 6,
-            delay: Math.random() * 5,
-            left: Math.random() * 100,
-            top: Math.random() * 100,
-        }));
-        setParticles(newParticles);
-    }, []);
     return (
-        <section id="education" className="py-24 md:py-32 relative overflow-hidden bg-transparent">
-            {/* Background Decorative Elements */}
-            <div className="absolute inset-0 pointer-events-none z-0">
-                <div className="absolute top-1/4 left-1/4 w-[40rem] h-[40rem] bg-primary/20 rounded-full blur-[120px] mix-blend-multiply dark:mix-blend-screen opacity-50 animate-pulse" />
-                <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[120px] mix-blend-multiply dark:mix-blend-screen opacity-50 animate-pulse" style={{ animationDelay: '2s' }} />
-
-                {/* Floating Particles */}
-                {particles.map((particle) => (
-                    <motion.div
-                        key={particle.id}
-                        className="absolute w-2 h-2 bg-primary/20 rounded-full"
-                        animate={{
-                            y: [0, -120, 0],
-                            x: [0, particle.x, 0],
-                            opacity: [0.1, 0.4, 0.1],
-                        }}
-                        transition={{
-                            duration: particle.duration,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                            delay: particle.delay,
-                        }}
-                        style={{
-                            left: `${particle.left}%`,
-                            top: `${particle.top}%`,
-                        }}
-                    />
-                ))}
-            </div>
-
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <section id="education" className="relative py-14 px-4 sm:px-6 lg:px-8 bg-transparent">
+            <div className="max-w-3xl mx-auto relative z-10">
+                {/* Heading */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    className="text-center mb-24"
+                    transition={{ duration: 0.5 }}
+                    className="mb-10 text-center"
                 >
-                    <h2 className="text-3xl md:text-5xl font-extrabold mb-6 tracking-tight">
-                        My <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-indigo-500 italic relative inline-block">
-                            Education
-                            <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 100 10" preserveAspectRatio="none">
-                                <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="3" fill="none" className="text-primary/40" />
-                            </svg>
-                        </span> Journey
+                    <h2 className="text-3xl md:text-5xl font-extrabold mb-5 tracking-tight text-slate-900 dark:text-white">
+                        Education
                     </h2>
-                    <p className="text-muted-foreground max-w-2xl mx-auto text-base md:text-lg font-medium leading-relaxed">
-                        A chronological timeline of my academic background and key milestones in my learning path.
-                    </p>
+                    <div className="mx-auto h-1.5 w-24 rounded-full bg-gradient-to-r from-blue-600 to-sky-400" />
                 </motion.div>
 
-                {/* Desktop Horizontal Layout */}
-                <div className="hidden lg:block relative py-12">
-                    {/* Horizontal Timeline Line */}
-                    <div className="absolute top-[115px] left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+                {/* Left-aligned compact timeline with glowing connector line */}
+                <div className="relative pl-6 sm:pl-8 space-y-6">
+                    {/* Glowing vertical connector line */}
+                    <div className="absolute left-[7px] sm:left-[11px] top-4 bottom-4 w-[2px] bg-gradient-to-b from-blue-500 via-sky-400 to-indigo-500 shadow-[0_0_8px_rgba(59,130,246,0.3)] pointer-events-none" />
 
-                    <div className="flex justify-between items-start gap-8">
-                        {educationData.map((item, index) => (
+                    {educationData.map((item, index) => (
+                        <div key={item.title} className="relative">
+                            {/* Timeline pulsing dot node */}
+                            <div className="absolute -left-[25px] sm:-left-[33px] top-6 w-4.5 h-4.5 flex items-center justify-center z-10">
+                                <span className="absolute w-3.5 h-3.5 rounded-full bg-blue-500 animate-ping opacity-60" />
+                                <span className="relative w-3.5 h-3.5 rounded-full bg-blue-500 border-4 border-slate-50 dark:border-slate-950 shadow-[0_0_10px_rgba(59,130,246,0.8)]" />
+                            </div>
+
+                            {/* Alternating Slide-In Card */}
                             <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: index * 0.15 }}
-                                className="flex-1 relative"
+                                initial={{ 
+                                    opacity: 0, 
+                                    x: index % 2 === 0 ? -40 : 40 
+                                }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true, margin: "-100px" }}
+                                transition={{ type: "spring", stiffness: 260, damping: 25, delay: index * 0.05 }}
                             >
-                                {/* Milestone Dot */}
-                                <div className="absolute top-[67px] left-1/2 -ml-4 w-8 h-8 rounded-full border-4 border-background bg-primary z-20 shadow-[0_0_20px_rgba(var(--primary),0.5)] flex items-center justify-center group cursor-default">
-                                    <div className="absolute inset-0 rounded-full bg-primary animate-ping opacity-20 group-hover:opacity-40" />
-                                    <GraduationCap className="w-3.5 h-3.5 text-primary-foreground relative z-30" />
-                                </div>
-
-                                {/* Date/Label above timeline */}
-                                <div className="text-center mb-16">
-                                    <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold bg-primary/10 text-primary border border-primary/20 shadow-sm uppercase tracking-widest transition-all hover:bg-primary/20">
-                                        <Calendar className="w-3.5 h-3.5" />
-                                        {item.period}
-                                    </span>
-                                </div>
-
-                                {/* Content Card below timeline */}
                                 <motion.div
-                                    whileHover={{ y: -8, scale: 1.02 }}
-                                    className="relative group p-[1px] rounded-2xl overflow-hidden mt-8 transition-all duration-300"
+                                    whileHover={{ x: 2 }}
+                                    transition={{ duration: 0.2 }}
                                 >
-                                    {/* Animated Border Gradient */}
-                                    <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-secondary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                                    <Card className="border-slate-200/50 dark:border-slate-800/50 bg-white/40 dark:bg-slate-900/40 backdrop-blur-xl transition-all duration-300 hover:border-blue-500/30 dark:hover:border-blue-500/20 hover:shadow-md rounded-3xl relative overflow-hidden group">
+                                        <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                                        <CardContent className="p-5 sm:p-6 space-y-4 relative z-10">
+                                            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2.5">
+                                                <div className="space-y-1">
+                                                    <h3 className="text-lg font-bold text-slate-900 dark:text-white leading-tight transition-colors group-hover:text-blue-600 dark:group-hover:text-blue-400">
+                                                        {item.title}
+                                                    </h3>
+                                                    <p className="text-sm font-semibold text-blue-600 dark:text-blue-400">
+                                                        {item.organization}
+                                                    </p>
+                                                    <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400">
+                                                        <MapPin className="h-3.5 w-3.5 text-slate-400" />
+                                                        {item.location}
+                                                    </div>
+                                                </div>
 
-                                    <Card className="relative border border-white/10 bg-background/50 backdrop-blur-xl hover:bg-background/80 transition-all duration-500 shadow-[0_8px_30px_rgb(0,0,0,0.04)] group-hover:shadow-[0_8px_30px_rgba(37,99,235,0.15)] group-hover:-translate-y-2">
-                                        <CardContent className="p-8">
-                                            <div className="flex justify-between items-start mb-5">
-                                                <h3 className="text-xl font-extrabold group-hover:text-primary transition-colors leading-tight tracking-tight">
-                                                    {item.title}
-                                                </h3>
-                                                <div className="flex flex-col items-end">
-                                                    <span className="text-xs font-black text-primary/90 bg-primary/10 px-3 py-1.5 rounded-lg border border-primary/20 shadow-sm whitespace-nowrap">{item.result}</span>
+                                                <div className="flex flex-wrap items-center gap-2">
+                                                    <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-100 dark:bg-slate-950 px-3 py-1 text-xs font-bold text-slate-600 dark:text-slate-400 border border-slate-200/50 dark:border-slate-800/50">
+                                                        <Calendar className="h-3 w-3 text-blue-500 animate-pulse" />
+                                                        {item.period}
+                                                    </span>
+                                                    <span className="inline-flex items-center rounded-full bg-blue-500/10 text-blue-600 dark:bg-blue-400/10 dark:text-blue-400 px-3 py-1 text-xs font-bold border border-blue-200/50 dark:border-blue-800/30 shadow-sm">
+                                                        {item.result}
+                                                    </span>
                                                 </div>
                                             </div>
 
-                                            <div className="mb-5">
-                                                <p className="text-sm font-bold text-foreground/90 mb-2 tracking-wide text-lg">{item.organization}</p>
-                                                <div className="flex items-center gap-1.5 text-xs text-muted-foreground font-semibold uppercase tracking-wider">
-                                                    <MapPin className="w-3 h-3 text-primary/50" />
-                                                    {item.location}
-                                                </div>
-                                            </div>
-
-                                            <p className="text-muted-foreground text-[14px] leading-relaxed font-medium transition-all duration-300 group-hover:text-foreground/80">
+                                            <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-semibold">
                                                 {item.description}
                                             </p>
+
+                                            {/* Relevant Coursework */}
+                                            {item.coursework && (
+                                                <div className="pt-3.5 border-t border-slate-200/40 dark:border-slate-800/40">
+                                                    <p className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-2.5 flex items-center gap-1.5">
+                                                        <BookOpen className="w-3.5 h-3.5 text-blue-500" />
+                                                        Relevant Coursework
+                                                    </p>
+                                                    <div className="flex flex-wrap gap-1.5">
+                                                        {item.coursework.map(course => (
+                                                            <span 
+                                                                key={course} 
+                                                                className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white/70 dark:bg-slate-950/45 text-[10px] font-bold text-slate-600 dark:text-slate-300 border border-slate-200/30 dark:border-slate-800/30"
+                                                            >
+                                                                <Check className="w-3 h-3 text-blue-500" />
+                                                                {course}
+                                                            </span>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            )}
                                         </CardContent>
                                     </Card>
                                 </motion.div>
                             </motion.div>
-                        ))}
-                    </div>
-                </div>
-
-                {/* Tablet/Mobile Vertical Layout */}
-                <div className="lg:hidden relative py-5">
-                    <div className="absolute left-0 sm:left-1/2 sm:-ml-px w-px h-full bg-gradient-to-b from-transparent via-primary/20 to-transparent hidden sm:block" />
-
-                    <div className="space-y-8">
-                        {educationData.map((item, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: index * 0.1 }}
-                                className={`relative flex items-center justify-between sm:justify-normal ${index % 2 === 0 ? "sm:flex-row-reverse" : ""
-                                    }`}
-                            >
-                                <div className="absolute left-0 sm:left-1/2 -ml-1 sm:-ml-4 w-8 h-8 rounded-full border-4 border-background bg-primary z-20 hidden sm:flex items-center justify-center shadow-lg">
-                                    <GraduationCap className="w-3.5 h-3.5 text-primary-foreground" />
-                                </div>
-
-                                <div className="w-full sm:w-[46%]">
-                                    <motion.div whileHover={{ scale: 1.02 }} className="transition-transform duration-300">
-                                        <Card className="relative border-none bg-secondary/40 backdrop-blur-md shadow-lg rounded-2xl">
-                                            <CardContent className="p-6">
-                                                <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-                                                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-primary/10 text-primary border border-primary/20 shadow-sm">
-                                                        <Calendar className="w-3.5 h-3.5" />
-                                                        {item.period}
-                                                    </span>
-                                                    <span className="text-xs font-black text-primary/90 bg-primary/10 px-3 py-1.5 rounded-lg border border-primary/20">{item.result}</span>
-                                                </div>
-                                                <h3 className="text-xl font-extrabold mb-2">{item.title}</h3>
-                                                <p className="text-sm font-bold text-foreground/80 mb-3 text-lg">{item.organization}</p>
-                                                <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
-                                            </CardContent>
-                                        </Card>
-                                    </motion.div>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
+                        </div>
+                    ))}
                 </div>
             </div>
         </section>

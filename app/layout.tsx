@@ -5,6 +5,10 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Background } from "@/components/ui/Background";
+import { ScrollProgress } from "@/components/ui/ScrollProgress";
+import { CursorFollower } from "@/components/ui/CursorFollower";
+import { LoadingWrapper } from "@/components/ui/LoadingWrapper";
+import { FAB } from "@/components/ui/FAB";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -51,10 +55,15 @@ export default function RootLayout({
                     enableSystem
                     disableTransitionOnChange
                 >
-                    <Background />
-                    <Navbar />
-                    {children}
-                    <Footer />
+                    <LoadingWrapper>
+                        <ScrollProgress />
+                        <CursorFollower />
+                        <FAB />
+                        <Background />
+                        <Navbar />
+                        {children}
+                        <Footer />
+                    </LoadingWrapper>
                 </ThemeProvider>
             </body>
         </html >
